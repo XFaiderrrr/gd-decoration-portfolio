@@ -64,7 +64,7 @@ window.XFAIDER_PORTAL_DATA = {
           title: "SPAIDER",
           category: "GLOW / SPIDER THEME",
           status: "Colaboracion",
-          image: "images/spaider1.png",
+          image: "images/Spaider1.png",
           description:
             "Una colaboración con XSpace1 que explora una temática de arañas mediante decoración Glow y una identidad visual propia.",
           tags: ["Glow", "Spider", "XSpace1"]
