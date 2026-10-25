@@ -1,0 +1,673 @@
+
+/* =========================================
+   XFAIDER — SECRET EASTER EGGS
+   ========================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+:root {
+  --xf-cyan: #00eaff;
+  --xf-blue: #304dff;
+  --xf-purple: #b000ff;
+  --xf-pink: #ff00aa;
+  --xf-green: #00ff88;
+  --xf-dark: #080b12;
+  --xf-panel: rgba(8, 11, 18, 0.96);
+  --xf-border: rgba(0, 234, 255, 0.65);
+}
+
+/* =========================================
+   TOAST / SECRET NOTIFICATIONS
+   ========================================= */
+
+.xf-secret-toast {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 100002;
+
+  max-width: min(360px, calc(100vw - 32px));
+  padding: 15px 18px;
+
+  color: #eaffff;
+  background: rgba(5, 12, 24, 0.96);
+  border: 1px solid var(--xf-cyan);
+  border-radius: 10px;
+
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+
+  box-shadow:
+    0 0 12px rgba(0, 234, 255, 0.25),
+    inset 0 0 12px rgba(0, 234, 255, 0.06);
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease,
+    visibility 0.25s ease;
+
+  pointer-events: none;
+}
+
+.xf-secret-toast.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* =========================================
+   CUBE SECRET
+   ========================================= */
+
+.xf-cube-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100001;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(0, 0, 0, 0.78);
+  backdrop-filter: blur(5px);
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition:
+    opacity 0.35s ease,
+    visibility 0.35s ease;
+
+  pointer-events: none;
+}
+
+.xf-cube-overlay.is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.xf-cube-overlay img {
+  display: block;
+  width: min(220px, 55vw);
+  height: auto;
+  object-fit: contain;
+
+  image-rendering: pixelated;
+
+  filter:
+    drop-shadow(0 0 12px var(--xf-cyan))
+    drop-shadow(0 0 30px var(--xf-purple));
+
+  animation: xfCubeAppear 0.55s ease both;
+}
+
+@keyframes xfCubeAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.45) rotate(-15deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
+}
+
+/* =========================================
+   HACKER TERMINAL
+   ========================================= */
+
+.xf-terminal {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 100000;
+
+  width: min(520px, calc(100vw - 32px));
+  max-height: min(440px, 70vh);
+
+  display: flex;
+  flex-direction: column;
+
+  color: #d8fff5;
+  background: var(--xf-panel);
+  border: 1px solid var(--xf-border);
+  border-radius: 12px;
+
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 13px;
+  line-height: 1.6;
+
+  box-shadow:
+    0 0 25px rgba(0, 234, 255, 0.15),
+    0 0 60px rgba(48, 77, 255, 0.1);
+
+  overflow: hidden;
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px) scale(0.98);
+
+  transition:
+    opacity 0.22s ease,
+    transform 0.22s ease,
+    visibility 0.22s ease;
+}
+
+.xf-terminal.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.xf-terminal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  padding: 12px 14px;
+
+  color: var(--xf-cyan);
+  background: rgba(0, 234, 255, 0.07);
+  border-bottom: 1px solid rgba(0, 234, 255, 0.25);
+
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.xf-terminal-close {
+  display: grid;
+  place-items: center;
+
+  width: 30px;
+  height: 30px;
+  padding: 0;
+
+  color: #ffffff;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+
+  font-family: Arial, sans-serif;
+  font-size: 22px;
+  line-height: 1;
+
+  cursor: pointer;
+}
+
+.xf-terminal-close:hover {
+  color: var(--xf-pink);
+  border-color: var(--xf-pink);
+}
+
+.xf-terminal-output {
+  min-height: 110px;
+  max-height: 290px;
+  padding: 14px;
+
+  overflow: auto;
+  overflow-wrap: anywhere;
+
+  font-family: Consolas, "Courier New", monospace;
+  scrollbar-width: thin;
+  scrollbar-color: var(--xf-cyan) transparent;
+}
+
+.xf-terminal-line {
+  margin: 0 0 6px;
+  color: #c6f8e8;
+}
+
+.xf-terminal-line.success {
+  color: var(--xf-green);
+}
+
+.xf-terminal-line.error {
+  color: #ff647c;
+}
+
+.xf-terminal-input-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 12px 14px;
+
+  border-top: 1px solid rgba(0, 234, 255, 0.2);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.xf-terminal-input-row > span {
+  color: var(--xf-green);
+  font-weight: bold;
+}
+
+.xf-terminal-input {
+  flex: 1;
+  min-width: 0;
+  padding: 7px 0;
+
+  color: #ffffff;
+  background: transparent;
+  border: 0;
+  outline: none;
+
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 13px;
+}
+
+.xf-terminal-input::placeholder {
+  color: rgba(216, 255, 245, 0.45);
+}
+
+/* =========================================
+   VISUAL MODE — UNLOCKED ONLY AFTER BOTH
+   ========================================= */
+
+/* Fuente 8-bit: no se activa con XFAIDER por sí solo. */
+body.visual-unlocked,
+body.visual-unlocked * {
+  font-family: "Press Start 2P", monospace;
+}
+
+/* Ajustes para que el texto 8-bit no sea ilegible. */
+body.visual-unlocked {
+  font-size: 10px;
+  line-height: 1.8;
+}
+
+body.visual-unlocked p,
+body.visual-unlocked li,
+body.visual-unlocked a,
+body.visual-unlocked button,
+body.visual-unlocked label,
+body.visual-unlocked input,
+body.visual-unlocked textarea {
+  line-height: 1.9;
+}
+
+/* =========================================
+   RGB BORDER AROUND THE PORTFOLIO CONTAINER
+   ========================================= */
+
+/*
+  JavaScript agrega .xf-rgb-host al contenedor principal
+  y crea .xf-rgb-border dentro de él.
+
+  No se usa position: fixed: el borde sigue al contenedor.
+*/
+
+.xf-rgb-host {
+  isolation: isolate;
+}
+
+.xf-rgb-border {
+  position: absolute;
+  inset: -4px;
+  z-index: 99999;
+
+  padding: 3px;
+  border-radius: inherit;
+
+  background: conic-gradient(
+    from var(--xf-rgb-angle, 0deg),
+    #ff003c,
+    #ff8a00,
+    #fff000,
+    #00ff66,
+    #00d9ff,
+    #304dff,
+    #b000ff,
+    #ff00aa,
+    #ff003c
+  );
+
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+
+  filter:
+    drop-shadow(0 0 4px rgba(0, 234, 255, 0.75))
+    drop-shadow(0 0 10px rgba(176, 0, 255, 0.35));
+
+  pointer-events: none;
+
+  animation: xfRgbBorderRotate 5s linear infinite;
+}
+
+@property --xf-rgb-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes xfRgbBorderRotate {
+  to {
+    --xf-rgb-angle: 360deg;
+  }
+}
+
+/* =========================================
+   VISUAL CONTROLS IN THE NAVIGATION
+   ========================================= */
+
+.xf-visual-controls {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 9px;
+
+  max-width: 100%;
+  margin: 8px;
+  padding: 8px 12px;
+
+  color: var(--xf-cyan);
+  background: rgba(5, 12, 24, 0.88);
+  border: 1px solid rgba(0, 234, 255, 0.4);
+  border-radius: 8px;
+
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+
+  box-shadow: 0 0 12px rgba(0, 234, 255, 0.08);
+}
+
+.xf-visual-controls.is-unlocked {
+  display: flex;
+}
+
+.xf-visual-controls label {
+  color: var(--xf-cyan);
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+#xf-color-slider {
+  width: clamp(80px, 12vw, 145px);
+  max-width: 100%;
+
+  accent-color: var(--xf-cyan);
+  cursor: pointer;
+}
+
+.xf-color-value {
+  min-width: 35px;
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  text-align: right;
+}
+
+/* =========================================
+   PARTICLES — ONLY AFTER BOTH SECRETS
+   ========================================= */
+
+.xf-visual-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 89998;
+
+  overflow: hidden;
+  pointer-events: none;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition:
+    opacity 0.4s ease,
+    visibility 0.4s ease;
+}
+
+.xf-visual-layer.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.xf-particle {
+  position: absolute;
+
+  top: var(--particle-y);
+  left: var(--particle-x);
+
+  width: 3px;
+  height: 3px;
+
+  border-radius: 50%;
+  background: var(--xf-cyan);
+
+  box-shadow:
+    0 0 6px var(--xf-cyan),
+    0 0 13px rgba(0, 234, 255, 0.7);
+
+  opacity: 0;
+
+  animation:
+    xfParticleFloat var(--particle-duration) ease-in-out
+    var(--particle-delay) infinite;
+}
+
+.xf-particle:nth-child(3n) {
+  width: 4px;
+  height: 4px;
+  background: var(--xf-purple);
+  box-shadow:
+    0 0 7px var(--xf-purple),
+    0 0 15px rgba(176, 0, 255, 0.7);
+}
+
+.xf-particle:nth-child(3n + 1) {
+  background: var(--xf-pink);
+  box-shadow:
+    0 0 7px var(--xf-pink),
+    0 0 14px rgba(255, 0, 170, 0.6);
+}
+
+@keyframes xfParticleFloat {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 12px, 0) scale(0.6);
+  }
+
+  25% {
+    opacity: 0.85;
+  }
+
+  50% {
+    opacity: 0.55;
+    transform: translate3d(12px, -20px, 0) scale(1.2);
+  }
+
+  75% {
+    opacity: 0.9;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(-8px, -45px, 0) scale(0.5);
+  }
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 700px) {
+  .xf-terminal {
+    right: 12px;
+    bottom: 12px;
+    width: calc(100vw - 24px);
+    max-height: 65vh;
+  }
+
+  .xf-secret-toast {
+    right: 12px;
+    bottom: 12px;
+  }
+
+  .xf-rgb-border {
+    inset: -3px;
+    padding: 2px;
+  }
+
+  .xf-visual-controls {
+    gap: 6px;
+    margin: 5px;
+    padding: 7px;
+  }
+
+  #xf-color-slider {
+    width: 90px;
+  }
+
+  body.visual-unlocked {
+    font-size: 8px;
+  }
+}
+
+/* =========================================
+   REDUCED MOTION ACCESSIBILITY
+   ========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .xf-rgb-border,
+  .xf-particle,
+  .xf-cube-overlay img {
+    animation: none !important;
+  }
+
+  .xf-terminal,
+  .xf-secret-toast,
+  .xf-cube-overlay,
+  .xf-visual-layer {
+    transition: none !important;
+  }
+}
+
+/* =========================================
+   XFAIDER — MATRIX BINARY RAIN
+   ========================================= */
+
+.xf-binary-rain {
+  position: fixed;
+  inset: 0;
+  z-index: 89997;
+
+  overflow: hidden;
+  pointer-events: none;
+
+  opacity: 0;
+  animation: xfBinaryReveal 1.2s ease forwards;
+}
+
+.xf-binary-column {
+  position: absolute;
+  top: -110%;
+
+  color: #00ff88;
+  font-family: "Courier New", monospace !important;
+  font-size: clamp(12px, 1.2vw, 17px) !important;
+  font-weight: bold;
+  line-height: 1.65;
+
+  white-space: pre;
+  text-align: center;
+  opacity: var(--binary-opacity, 0.5);
+
+  text-shadow:
+    0 0 5px rgba(0, 255, 136, 0.7),
+    0 0 12px rgba(0, 234, 255, 0.35);
+
+  animation-name: xfBinaryFall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+.xf-binary-column:nth-child(3n) {
+  color: #00eaff;
+}
+
+.xf-binary-column:nth-child(5n) {
+  color: #7affc5;
+}
+
+@keyframes xfBinaryFall {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(220vh);
+  }
+}
+
+@keyframes xfBinaryReveal {
+  to {
+    opacity: 1;
+  }
+}
+
+/* =========================================
+   FASTER PARTICLES IN HACKER MODE
+   ========================================= */
+
+body.hacker-mode .xf-particle {
+  animation-duration: 2.4s !important;
+  opacity: 0.9;
+}
+
+body.hacker-mode .xf-particle:nth-child(3n) {
+  box-shadow:
+    0 0 9px #b000ff,
+    0 0 20px rgba(176, 0, 255, 0.8);
+}
+
+body.hacker-mode .xf-particle:nth-child(3n + 1) {
+  box-shadow:
+    0 0 9px #ff00aa,
+    0 0 20px rgba(255, 0, 170, 0.75);
+}
+
+/* El fondo binario nunca bloquea la interfaz. */
+.xf-binary-rain,
+.xf-binary-column {
+  pointer-events: none;
+}
+
+/* En móviles, menos columnas para conservar el rendimiento. */
+@media (max-width: 600px) {
+  .xf-binary-column {
+    font-size: 11px !important;
+    line-height: 1.8;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .xf-binary-rain {
+    animation: none;
+    opacity: 0.65;
+  }
+
+  .xf-binary-column {
+    animation: none;
+    top: 0;
+    opacity: 0.3;
+  }
+
+  body.hacker-mode .xf-particle {
+    animation-duration: 7s !important;
+  }
+}
