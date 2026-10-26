@@ -2087,3 +2087,312 @@ textarea {
         transition: none !important;
     }
 }
+
+/* ==========================================
+   COLLAB DASHBOARD — CENTERED & SQUARE
+   ========================================== */
+
+/* Mantener la sección dentro del ancho del contenido */
+.stats-section {
+    display: block;
+    width: 100%;
+    max-width: 1006px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 56px 0 72px;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+}
+
+.stats-heading {
+    margin-bottom: 28px;
+}
+
+.stats-heading h2 {
+    margin: 12px 0;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    letter-spacing: -.04em;
+}
+
+.stats-intro {
+    max-width: 620px;
+    line-height: 1.8;
+}
+
+/* Tres cuadros cuadrados en una fila */
+.collab-dashboard {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 170px));
+    justify-content: center;
+    align-items: start;
+    gap: 24px;
+    margin: 30px auto 26px;
+}
+
+.collab-stat-option {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.collab-mini-label {
+    display: block;
+    min-height: 12px;
+    padding-left: 2px;
+    color: #aaa9c2;
+    font-size: .64rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+}
+
+/* La propiedad clave para que sean cuadrados */
+.collab-stat-box {
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 12px;
+
+    border: 1px solid rgba(255,255,255,.1);
+    border-top: 3px solid var(--tile-color);
+    border-radius: 12px;
+    background: var(--tile-bg);
+    color: #f5f4ff;
+    text-align: center;
+    cursor: pointer;
+
+    transition:
+        transform .2s ease,
+        border-color .2s ease,
+        box-shadow .2s ease,
+        background .2s ease;
+}
+
+.collab-stat-box.finished {
+    --tile-color: #8cdbb0;
+    --tile-bg: #1c302b;
+}
+
+.collab-stat-box.progress {
+    --tile-color: #f0d18a;
+    --tile-bg: #332d21;
+}
+
+.collab-stat-box.not-started {
+    --tile-color: #ef9da5;
+    --tile-bg: #352429;
+}
+
+.collab-stat-box:hover {
+    transform: translateY(-3px);
+    border-color: var(--tile-color);
+}
+
+.collab-stat-box.is-selected {
+    border-color: var(--tile-color);
+    box-shadow: 0 0 0 1px var(--tile-color),
+                0 0 22px color-mix(in srgb, var(--tile-color) 12%, transparent);
+}
+
+.collab-stat-box:focus-visible {
+    outline: 2px solid var(--tile-color);
+    outline-offset: 4px;
+}
+
+.collab-stat-number {
+    color: var(--tile-color);
+    font-size: clamp(2rem, 4vw, 2.7rem);
+    font-weight: 750;
+    line-height: 1;
+    letter-spacing: -.06em;
+}
+
+.collab-stat-caption {
+    color: #c8c7d8;
+    font-size: .59rem;
+    font-weight: 600;
+    letter-spacing: .07em;
+}
+
+/* Panel de resultados: oculto mientras no se seleccione un cuadro */
+.collab-results {
+    width: 100%;
+    max-width: 760px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 22px;
+
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 14px;
+    background: rgba(13,14,27,.78);
+    animation: collab-panel-in .22s ease both;
+}
+
+.collab-results[hidden] {
+    display: none !important;
+}
+
+@keyframes collab-panel-in {
+    from {
+        opacity: 0;
+        transform: translateY(7px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Lista compacta */
+.collab-results-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 18px;
+}
+
+.collab-results-title {
+    margin: 6px 0 0;
+    font-size: 1.2rem;
+}
+
+.collab-results-eyebrow {
+    color: #a6a0ff;
+    font-size: .65rem;
+    font-weight: 700;
+    letter-spacing: .12em;
+}
+
+.collab-results-count {
+    flex-shrink: 0;
+    color: #a8a9c0;
+    font-size: .68rem;
+}
+
+.collab-search {
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 14px;
+    padding: 11px 13px;
+    color: #f1f1fc;
+    background: #10111e;
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 8px;
+    outline: none;
+    font: inherit;
+    font-size: .82rem;
+}
+
+.collab-search:focus {
+    border-color: #9a91ff;
+}
+
+.collab-list-heading,
+.collab-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: 14px;
+}
+
+.collab-list-heading {
+    padding: 11px 12px;
+    color: #a6a0ff;
+    border-bottom: 1px solid rgba(255,255,255,.12);
+    font-size: .66rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+}
+
+.collab-rows {
+    max-height: 320px;
+    overflow-y: auto;
+}
+
+.collab-row {
+    padding: 11px 12px;
+    color: #e8e8f4;
+    border-bottom: 1px solid rgba(255,255,255,.055);
+    font-size: .81rem;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+.collab-row span:last-child {
+    color: #a4a6bb;
+}
+
+.collab-rows[hidden],
+.collab-row[hidden],
+.collab-no-results[hidden],
+.collab-empty-message[hidden] {
+    display: none !important;
+}
+
+@media (max-width: 1100px) {
+    .stats-section {
+        width: calc(100% - 48px);
+    }
+}
+
+@media (max-width: 600px) {
+    .stats-section {
+        width: calc(100% - 32px);
+        padding-top: 40px;
+    }
+
+    .collab-dashboard {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .collab-mini-label {
+        font-size: .53rem;
+        letter-spacing: .04em;
+    }
+
+    .collab-stat-box {
+        padding: 8px;
+        border-radius: 9px;
+        gap: 9px;
+    }
+
+    .collab-stat-number {
+        font-size: clamp(1.6rem, 8vw, 2.2rem);
+    }
+
+    .collab-stat-caption {
+        font-size: .49rem;
+        letter-spacing: 0;
+    }
+
+    .collab-results {
+        padding: 15px 11px;
+    }
+
+    .collab-list-heading,
+    .collab-row {
+        gap: 8px;
+        padding-right: 7px;
+        padding-left: 7px;
+        font-size: .72rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .collab-stat-box {
+        transition: none;
+    }
+
+    .collab-results {
+        animation: none;
+    }
+}

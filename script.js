@@ -365,3 +365,143 @@ document.addEventListener("DOMContentLoaded", () => {
             `Geometry Dash Decoration Portfolio · ${new Date().getFullYear()}`;
     }
 });
+
+/* ==========================================
+   XFAIDER COLLAB DASHBOARD
+   Abrir, cerrar y cambiar de categoría
+   ========================================== */
+
+(() => {
+    const dashboard = document.querySelector(".collab-dashboard");
+    const panel = document.querySelector(".collab-results");
+
+    if (!dashboard || !panel) return;
+
+    const buttons = [
+        ...dashboard.querySelectorAll("[data-collab-tab]")
+    ];
+
+    const lists = [
+        ...panel.querySelectorAll("[data-collab-list]")
+    ];
+
+    const search = panel.querySelector(".collab-search");
+    const title = panel.querySelector(".collab-results-title");
+    const eyebrow = panel.querySelector(".collab-results-eyebrow");
+    const count = panel.querySelector(".collab-results-count");
+    const noResults = panel.querySelector(".collab-no-results");
+    const emptyMessage = panel.querySelector(".collab-empty-message");
+
+    const states = {
+        finished: {
+            title: "Collabs terminados",
+            eyebrow: "ARCHIVE / 01",
+            count: "21 PROJECTS"
+        },
+        progress: {
+            title: "Collabs en proceso",
+            eyebrow: "ARCHIVE / 02",
+            count: "1 PROJECT"
+        },
+        "not-started": {
+            title: "Collabs sin empezar",
+            eyebrow: "ARCHIVE / 03",
+            count: "0 PROJECTS"
+        }
+    };
+
+    let activeCategory = null;
+
+    function filterList() {
+        const activeList = lists.find(list => !list.hidden);
+        const query = search.value.trim().toLocaleLowerCase();
+
+        let visibleRows = 0;
+        let totalRows = 0;
+
+        if (activeList) {
+            activeList.querySelectorAll(".collab-row").forEach(row => {
+                totalRows++;
+
+                const matches = row.textContent
+                    .toLocaleLowerCase()
+                    .includes(query);
+
+                row.hidden = !matches;
+
+                if (matches) visibleRows++;
+            });
+        }
+
+        const categoryIsEmpty = totalRows === 0;
+
+        if (noResults) {
+            noResults.hidden = categoryIsEmpty || visibleRows > 0;
+        }
+
+        if (emptyMessage) {
+            emptyMessage.hidden = !categoryIsEmpty;
+        }
+    }
+
+    function closePanel() {
+        activeCategory = null;
+        panel.hidden = true;
+
+        buttons.forEach(button => {
+            button.classList.remove("is-selected");
+            button.setAttribute("aria-pressed", "false");
+        });
+
+        lists.forEach(list => {
+            list.hidden = true;
+        });
+
+        search.value = "";
+    }
+
+    function selectCategory(category) {
+        // Pulsar otra vez el mismo cuadro cierra el panel.
+        if (activeCategory === category) {
+            closePanel();
+            return;
+        }
+
+        const state = states[category];
+
+        if (!state) return;
+
+        activeCategory = category;
+
+        buttons.forEach(button => {
+            const selected = button.dataset.collabTab === category;
+
+            button.classList.toggle("is-selected", selected);
+            button.setAttribute("aria-pressed", String(selected));
+        });
+
+        lists.forEach(list => {
+            list.hidden = list.dataset.collabList !== category;
+        });
+
+        title.textContent = state.title;
+        eyebrow.textContent = state.eyebrow;
+        count.textContent = state.count;
+
+        search.value = "";
+        panel.hidden = false;
+
+        filterList();
+    }
+
+    buttons.forEach(button => {
+        button.addEventListener("click", () => {
+            selectCategory(button.dataset.collabTab);
+        });
+    });
+
+    search.addEventListener("input", filterList);
+
+    // Al entrar solo se muestran los tres cuadros.
+    closePanel();
+})();

@@ -76,11 +76,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 href="#contacto"
             >
                 <span class="gallery-es">
-                    Ver enlace del proyecto
+                    Ver
                 </span>
-
+                    
                 <span class="gallery-en">
-                    Open project link
+                    
                 </span>
             </a>
         </div>

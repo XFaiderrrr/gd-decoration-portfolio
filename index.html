@@ -53,7 +53,7 @@
 </div>
 <!-- FIN DE LA INTRO -->
 
-    <!-- Selector de idioma: funciona solo con CSS -->
+    <!-- Selector de idioma ES / EN -->
     <input type="radio" name="language" id="lang-es" checked>
     <input type="radio" name="language" id="lang-en">
 
@@ -489,35 +489,143 @@
                 </div>
             </section>
 
-            <!-- SOBRE MÍ -->
-            <section class="section about-section" id="sobre-mi">
-                <div class="about-decoration">XF</div>
-                <div class="about-content">
-                    <p class="eyebrow">03 / ABOUT THE CREATOR</p>
-                    <h2>
-                        <span class="lang-es">Cada objeto tiene <span class="gradient-text">un propósito.</span></span>
-                        <span class="lang-en">Every object has <span class="gradient-text">a purpose.</span></span>
-                    </h2>
-                    <p>
-                        <span class="lang-es">
-                            Para mí, decorar en Geometry Dash es mucho más
-                            que colocar objetos, es construir una atmósfera,
-                            dirigir la mirada del jugador y contar algo
-                            a través del diseño.
-                        </span>
-                        <span class="lang-en">
-                            For me, decorating in Geometry Dash is more
-                            than placing objects, it's about building
-                            an atmosphere, guiding the player's eye and
-                            telling a story through design.
-                        </span>
-                    </p>
-                    <p>
-                        <span class="lang-es">Este portafolio reúne mi trabajo asi como mi evolución a lo largo de esta historia.</span>
-                        <span class="lang-en">This portfolio brings together my work as well as my evolution throughout this journey.</span>
-                    </p>
-                </div>
-            </section>
+          
+<section class="about-section stats-section" id="sobre-mi">
+    <div class="stats-heading">
+        <span class="section-label">03 / COLLAB DATABASE</span>
+
+        <h2>
+            <span class="lang-es">Mi recorrido en collabs.</span>
+            <span class="lang-en">My collab journey.</span>
+        </h2>
+
+        <p class="stats-intro">
+            <span class="lang-es">
+                Cada colaboración forma parte de mi evolución como creador.
+            </span>
+            <span class="lang-en">
+                Every collaboration is part of my growth as a creator.
+            </span>
+        </p>
+    </div>
+
+    <!-- SELECTOR DE ESTADOS -->
+    <div class="collab-dashboard">
+
+        <div class="collab-stat-option">
+            <span class="collab-mini-label">TERMINADOS</span>
+            <button
+                class="collab-stat-box finished"
+                type="button"
+                data-collab-tab="finished"
+                aria-pressed="false"
+            >
+                <span class="collab-stat-number">21</span>
+                <span class="collab-stat-caption">COMPLETADOS</span>
+            </button>
+        </div>
+
+        <div class="collab-stat-option">
+            <span class="collab-mini-label">EN PROCESO</span>
+            <button
+                class="collab-stat-box progress"
+                type="button"
+                data-collab-tab="progress"
+                aria-pressed="false"
+            >
+                <span class="collab-stat-number">1</span>
+                <span class="collab-stat-caption">ACTIVOS</span>
+            </button>
+        </div>
+
+        <div class="collab-stat-option">
+            <span class="collab-mini-label">SIN EMPEZAR</span>
+            <button
+                class="collab-stat-box not-started"
+                type="button"
+                data-collab-tab="not-started"
+                aria-pressed="false"
+            >
+                <span class="collab-stat-number">0</span>
+                <span class="collab-stat-caption">PENDIENTES</span>
+            </button>
+        </div>
+
+    </div>
+
+    <!-- PANEL ÚNICO DE COLLABS -->
+    <div class="collab-results" aria-live="polite" hidden>
+
+        <div class="collab-results-header">
+            <div>
+                <span class="collab-results-eyebrow">ARCHIVE / 01</span>
+                <h3 class="collab-results-title">Collabs terminados</h3>
+            </div>
+
+            <span class="collab-results-count">21 PROJECTS</span>
+        </div>
+
+        <input
+            class="collab-search"
+            type="search"
+            placeholder="Buscar nivel o equipo..."
+            aria-label="Buscar nivel o equipo"
+        >
+
+        <div class="collab-list-heading">
+            <span>LEVEL</span>
+            <span>HOST / TEAM</span>
+        </div>
+
+        <!-- TERMINADOS -->
+        <div class="collab-rows" data-collab-list="finished">
+            <div class="collab-row"><span>Heaven Again</span><span>GHT</span></div>
+            <div class="collab-row"><span>Capella</span><span>KLG7</span></div>
+            <div class="collab-row"><span>Electrical Surge</span><span>Xspace1</span></div>
+            <div class="collab-row"><span>Glowy Vibes</span><span>Cesardavid20</span></div>
+            <div class="collab-row"><span>Carmesi</span><span>Team Crystal</span></div>
+            <div class="collab-row"><span>Prism</span><span>NGTofficial</span></div>
+            <div class="collab-row"><span>Genetics Glow</span><span>AFKTeam</span></div>
+            <div class="collab-row"><span>Amethyst River</span><span>NGTofficial</span></div>
+            <div class="collab-row"><span>Rage Bait</span><span>iXandGDC</span></div>
+            <div class="collab-row"><span>Poseidon</span><span>Team Multicollab's</span></div>
+            <div class="collab-row"><span>Spooder</span><span>Glitch Gang</span></div>
+            <div class="collab-row"><span>Nostalgic Lights</span><span>Lux</span></div>
+            <div class="collab-row"><span>Blood</span><span>gaby</span></div>
+            <div class="collab-row"><span>Stardust</span><span>Angelical23</span></div>
+            <div class="collab-row"><span>Techno Savage</span><span>NGTofficial</span></div>
+            <div class="collab-row"><span>Shot Down</span><span>ChuchitoDomin</span></div>
+            <div class="collab-row"><span>Beyond the Peak</span><span>D4rked</span></div>
+            <div class="collab-row"><span>Nicolea</span><span>TE</span></div>
+            <div class="collab-row"><span>Glowtastic</span><span>Joath156</span></div>
+            <div class="collab-row"><span>Mega Collab de panas</span><span>ImGabeGD</span></div>
+            <div class="collab-row"><span>Come Home</span><span>DanielGMS</span></div>
+        </div>
+
+        <!-- EN PROCESO -->
+        <div class="collab-rows" data-collab-list="progress" hidden>
+            <div class="collab-row"><span>Lullaby</span><span>Sebasthian60</span></div>
+        </div>
+
+        <!-- SIN EMPEZAR -->
+        <div class="collab-rows" data-collab-list="not-started" hidden></div>
+
+        <p class="collab-no-results" hidden>
+            No se encontraron collabs.
+        </p>
+
+        <p class="collab-empty-message" hidden>
+            No hay colaboraciones en esta categoría por ahora.
+        </p>
+
+        <div class="collab-panel-footer">
+            <span class="collab-live-dot"></span>
+            <span></span>
+        </div>
+
+    </div>
+</section>
+
 
             <!-- CONTACTO -->
             <section class="section contact-section" id="contacto">
@@ -577,5 +685,6 @@
     <script src="easter-eggs.js" defer></script>
     <script src="portal-data.js" defer></script>
     <script src="portal.js" defer></script>
+    <script src="language.js" defer></script>
 </body>
 </html>
