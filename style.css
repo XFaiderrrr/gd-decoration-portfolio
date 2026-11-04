@@ -1,3 +1,4 @@
+
 /* =========================================
    XFAIDER PORTFOLIO
    Geometry Dash Decoration
@@ -2394,5 +2395,331 @@ textarea {
 
     .collab-results {
         animation: none;
+    }
+}
+
+
+
+/* =========================================
+   AVISOS / PANEL FLOTANTE DE NOVEDADES
+   ========================================= */
+.header {
+    position: sticky;
+}
+.notice-center {
+    position: relative;
+    flex: 0 0 auto;
+    z-index: 120;
+}
+.notice-toggle {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 40px;
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: rgba(139, 92, 246, 0.09);
+    color: var(--text);
+    cursor: pointer;
+    transition: border-color .2s ease, background .2s ease, transform .2s ease;
+}
+.notice-toggle:hover,
+.notice-toggle[aria-expanded="true"] {
+    border-color: rgba(139, 92, 246, .65);
+    background: rgba(139, 92, 246, .17);
+    transform: translateY(-1px);
+}
+.notice-toggle svg {
+    width: 19px;
+    height: 19px;
+    fill: none;
+    stroke: var(--purple-light);
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+.notice-toggle-label {
+    font-size: .78rem;
+    font-weight: 750;
+}
+.notice-unread-dot {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 7px;
+    height: 7px;
+    border: 1px solid var(--bg);
+    border-radius: 50%;
+    background: #60e7be;
+    box-shadow: 0 0 10px rgba(96, 231, 190, .7);
+}
+.notice-panel {
+    position: absolute;
+    top: calc(100% + 14px);
+    right: 0;
+    width: min(390px, calc(100vw - 28px));
+    max-height: min(620px, calc(100vh - 115px));
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid rgba(167, 139, 250, .28);
+    border-radius: 16px;
+    background: rgba(13, 13, 27, .97);
+    box-shadow: 0 22px 70px rgba(0, 0, 0, .55), 0 0 35px rgba(124, 58, 237, .12);
+    backdrop-filter: blur(20px);
+    animation: noticePanelIn .18s ease-out;
+}
+.notice-panel[hidden],
+.notice-list [hidden] {
+    display: none !important;
+}
+@keyframes noticePanelIn {
+    from { opacity: 0; transform: translateY(-7px) scale(.985); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.notice-panel-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 18px 14px;
+    border-bottom: 1px solid rgba(167, 139, 250, .14);
+}
+.notice-kicker {
+    color: var(--blue);
+    font-size: .62rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+.notice-panel-heading h2 {
+    margin-top: 4px;
+    font-size: 1.35rem;
+    letter-spacing: -.5px;
+}
+.notice-close {
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: rgba(255,255,255,.035);
+    color: var(--muted);
+    font-size: 1.35rem;
+    line-height: 1;
+    cursor: pointer;
+}
+.notice-close:hover {
+    color: white;
+    border-color: var(--purple);
+}
+.notice-list {
+    display: grid;
+    gap: 12px;
+    overflow-y: auto;
+    padding: 14px;
+}
+.notice-card {
+    overflow: hidden;
+    border: 1px solid rgba(167, 139, 250, .16);
+    border-radius: 12px;
+    background: linear-gradient(145deg, rgba(29, 26, 49, .9), rgba(17, 17, 31, .96));
+}
+.notice-card-image {
+    width: 100%;
+    aspect-ratio: 16 / 8;
+    object-fit: cover;
+    background: #17142b;
+}
+.notice-card-content {
+    padding: 13px 14px 14px;
+}
+.notice-card-topline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 7px;
+}
+.notice-type {
+    padding: 3px 7px;
+    border: 1px solid rgba(56, 189, 248, .2);
+    border-radius: 5px;
+    color: var(--blue);
+    background: rgba(56, 189, 248, .07);
+    font-size: .58rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+.notice-date {
+    color: #77738f;
+    font-size: .66rem;
+}
+.notice-card h3 {
+    font-size: 1rem;
+    line-height: 1.35;
+}
+.notice-card-description {
+    margin-top: 7px;
+    color: var(--muted);
+    font-size: .79rem;
+    line-height: 1.6;
+}
+.notice-card-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+}
+.notice-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: 32px;
+    padding: 6px 10px;
+    border: 1px solid rgba(139, 92, 246, .35);
+    border-radius: 7px;
+    background: rgba(139, 92, 246, .1);
+    color: #e9e2ff;
+    font-size: .72rem;
+    font-weight: 750;
+    cursor: pointer;
+}
+.notice-action:hover {
+    border-color: var(--purple-light);
+    background: rgba(139, 92, 246, .2);
+}
+.notice-action.primary {
+    background: linear-gradient(110deg, #6d35c9, #4268d9);
+    border-color: transparent;
+    color: white;
+}
+.notice-empty,
+.notice-loading {
+    padding: 20px 8px;
+    color: var(--muted);
+    text-align: center;
+    font-size: .82rem;
+}
+.notice-panel-footer {
+    padding: 11px 16px;
+    border-top: 1px solid rgba(167, 139, 250, .12);
+    color: #77738f;
+    font-size: .68rem;
+    text-align: center;
+}
+.notice-toast {
+    position: fixed;
+    z-index: 9999;
+    right: 20px;
+    bottom: 20px;
+    padding: 11px 15px;
+    border: 1px solid rgba(96, 231, 190, .35);
+    border-radius: 10px;
+    background: #111827;
+    color: #e8fff7;
+    box-shadow: 0 12px 35px rgba(0,0,0,.35);
+    font-size: .82rem;
+}
+@media (max-width: 950px) {
+    .notice-toggle-label { display: none; }
+    .notice-toggle { width: 40px; padding: 8px; }
+}
+@media (max-width: 650px) {
+    .notice-center { order: 2; margin-left: auto; }
+    .notice-panel {
+        position: fixed;
+        top: 82px;
+        right: 12px;
+        width: min(390px, calc(100vw - 24px));
+        max-height: calc(100vh - 100px);
+    }
+    .notice-toggle-label { display: inline; }
+    .notice-toggle { width: auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .notice-panel { animation: none; }
+}
+
+
+/* ==========================================
+   AVISOS — SCROLL Y CONTENIDO COMPLETO
+   ========================================== */
+
+/* El panel limita su tamaño, pero no recorta la lista */
+.notice-panel {
+    min-height: 0;
+}
+
+/* La lista ocupa el espacio disponible y tiene su propio scroll */
+.notice-list {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    min-height: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-color: #6650a9 rgba(11, 11, 22, 0.45);
+}
+
+/* Evita que las tarjetas se compriman cuando hay varios avisos */
+.notice-card {
+    flex: 0 0 auto;
+    min-width: 0;
+    height: auto;
+    overflow: visible;
+}
+
+/* Conserva las esquinas de la imagen sin recortar el texto de la tarjeta */
+.notice-card-image {
+    border-radius: 11px 11px 0 0;
+}
+
+/* Permite que títulos y descripciones ocupen las líneas que necesiten */
+.notice-card h3,
+.notice-card-description {
+    height: auto;
+    max-height: none;
+    overflow: visible;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: normal;
+}
+
+/* Barra de desplazamiento de la lista de avisos */
+.notice-list::-webkit-scrollbar {
+    width: 7px;
+}
+
+.notice-list::-webkit-scrollbar-track {
+    border-radius: 8px;
+    background: rgba(11, 11, 22, 0.45);
+}
+
+.notice-list::-webkit-scrollbar-thumb {
+    border: 1px solid rgba(11, 11, 22, 0.45);
+    border-radius: 8px;
+    background: linear-gradient(180deg, #8b5cf6, #38bdf8);
+}
+
+.notice-list::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #b49aff, #63e9ff);
+}
+
+/* En pantallas pequeñas, la ventana sigue dentro del área visible */
+@media (max-width: 650px) {
+    .notice-panel {
+        max-height: calc(100dvh - 100px);
+    }
+
+    .notice-list {
+        min-height: 0;
     }
 }
