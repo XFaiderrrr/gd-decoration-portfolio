@@ -401,12 +401,12 @@ document.addEventListener("DOMContentLoaded", () => {
         progress: {
             title: "Collabs en proceso",
             eyebrow: "ARCHIVE / 02",
-            count: "1 PROJECT"
+            count: "2 PROJECT"
         },
         "not-started": {
             title: "Collabs sin empezar",
             eyebrow: "ARCHIVE / 03",
-            count: "0 PROJECTS"
+            count: "1 PROJECT"
         }
     };
 
